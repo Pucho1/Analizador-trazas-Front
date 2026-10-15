@@ -1,0 +1,29 @@
+# ESLint and Prettier run as local hooks so they use the exact versions pinned in package-lock.json.
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+        # tsconfig files are JSONC (they allow comments)
+        exclude: ^tsconfig.*\.json$
+      - id: check-merge-conflict
+      - id: check-added-large-files
+      - id: detect-private-key
+
+  - repo: local
+    hooks:
+      - id: eslint
+        name: eslint
+        entry: npm run lint
+        language: system
+        files: \.(ts|tsx|js)$
+        pass_filenames: false
+
+      - id: prettier
+        name: prettier
+        entry: npm run format
+        language: system
+        pass_filenames: false
