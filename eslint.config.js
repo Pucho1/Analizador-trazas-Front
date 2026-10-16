@@ -26,5 +26,12 @@ export default defineConfig([
       },
     },
   },
+  {
+    // shadcn/ui components are vendored as generated and export their variants next to them.
+    files: ['src/shared/components/ui/**/*.tsx'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
+    },
+  },
   prettier,
 ])
