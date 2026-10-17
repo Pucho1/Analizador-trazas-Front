@@ -19,6 +19,8 @@ export default defineConfig({
     // Tests never read a local .env: they get a fixed, non-secret backend URL.
     env: {
       VITE_API_BASE_URL: 'http://api.test',
+      // Dates are formatted in local time: fix the zone so expectations are deterministic.
+      TZ: 'UTC',
     },
   },
 })
